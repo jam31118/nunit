@@ -1,3 +1,5 @@
+"""Tools for Atomic unit (Hatree)"""
+
 import math as m
 
 ## Define fundamental constants
@@ -42,6 +44,7 @@ fw2fwhm = {
 }
 
 def duration_to_num_cycles(wavelength_nm, duration, duration_unit, envelope_shape='sin-square'):
+    """Convert FWHM (Full-Width at Half Maximum) duration to corresponding number of cycles"""
     assert type(duration_unit) is str
     if duration_unit.lower() == 'fs'.lower():
         dur_si = duration * 1e-15
