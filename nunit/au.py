@@ -1,6 +1,7 @@
 """Tools for Atomic unit (Hatree)"""
 
-import math as m
+#import math as m
+import numpy as np
 
 ## Define fundamental constants
 from .constant import *
@@ -40,7 +41,7 @@ for key in au2si:
     si2au[key] = 1.0 / au2si[key]
 
 fw2fwhm = {
-    'sin-square' : 1.0 - 2.0 / m.pi * m.asin(1.0 / 2**0.25)
+    'sin-square' : 1.0 - 2.0 / np.pi * np.arcsin(1.0 / 2**0.25)
 }
 
 def duration_to_num_cycles(wavelength_nm, duration, duration_unit, envelope_shape='sin-square'):
@@ -60,9 +61,9 @@ def duration_to_num_cycles(wavelength_nm, duration, duration_unit, envelope_shap
     #wavelegnth_nm = 800
     wavelength_si = wavelength_nm * 1e-9
     freq_si = c / wavelength_si
-    ang_freq_si = freq_si * 2.0 * m.pi
+    ang_freq_si = freq_si * 2.0 * np.pi
     ang_freq_au = si2au['ang_freq'] * ang_freq_si
-    period_au = 2.0 * m.pi / ang_freq_au
+    period_au = 2.0 * np.pi / ang_freq_au
 
     num_cycles = dur_au_fw / period_au
     
@@ -87,7 +88,7 @@ def intensity2maxEletricField(intensity, unit_in='W/cm^2', unit_out='au'):
         raise IOError("Unsupported input unit: %s" % (unit_in))
     
     ## Convert intensity in SI unit to max electric field, also in SI unit
-    maxElectricField_si = m.sqrt(intensity_si / (c * epsil0 / 2))
+    maxElectricField_si = np.sqrt(intensity_si / (c * epsil0 / 2))
 
     ## Convert unit to desired output unit
     if unit_out.lower() == 'au':

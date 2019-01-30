@@ -42,7 +42,7 @@ setup(
     ],
     keywords='unit, physics, atomic unit, natural unit',
     packages=find_packages(),
-    install_requires=[],
+    install_requires=['numpy'],
     long_description=long_description,
     license = 'GPLv3'
 )
