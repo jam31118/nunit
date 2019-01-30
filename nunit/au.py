@@ -44,6 +44,13 @@ fw2fwhm = {
     'sin-square' : 1.0 - 2.0 / np.pi * np.arcsin(1.0 / 2**0.25)
 }
 
+
+# Define some frequently used constants
+au2fs = au2si['time'] * 1e15
+au2as = au2si['time'] * 1e18
+
+
+
 def duration_to_num_cycles(wavelength_nm, duration, duration_unit, envelope_shape='sin-square'):
     """Convert FWHM (Full-Width at Half Maximum) duration to corresponding number of cycles"""
     assert type(duration_unit) is str
